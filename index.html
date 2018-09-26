@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/…/l…/jquery/1.12.4/jquery.min.js"></script> 
+<link rel="stylesheet" href="https://ajax.googleapis.com/…/them…/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/…/jquer…/1.12.1/jquery-ui.min.js"></script> 
+<script>
+var count = 0;
+function newtag(입대일, 전역일, 휴가일){
+var fragment = document.createDocumentFragment();
+createtag("h2", "입대일 : "+입대일.getFullYear()+"년 "+(입대일.getMonth()+1)+"월 "+입대일.getDate()+"일", "입대일", fragment);
+createtag("h2", "전역일 : "+전역일.getFullYear()+"년 "+(전역일.getMonth()+1)+"월 "+전역일.getDate()+"일", "전역일", fragment);
+createtag("h2", "복무일수 : "+(전역일-입대일)/86400000, "복무일수", fragment);
+createtag("h2", "지금까지 : "+parseInt((Date.now()-입대일)/86400000), "지금까지", fragment);
+createtag("h2", "남은것 : "+(parseInt((전역일-Date.now())/86400000)+1), "남은것", fragment);
+createtag("h2", "working day : "+((parseInt((전역일-Date.now())/86400000)+1)*5/7-10-휴가일), "워킹", fragment);
+createtag("h2", "% : "+(Date.now()-입대일)/(전역일-입대일)*100+"%", "%", fragment);
+document.getElementById("main").appendChild(fragment);
+//document.body.appendChild(fragment);
+}
+
+function updatetag(입대일, 전역일, 휴가일){
+edittag("입대일", "입대일 : "+입대일.getFullYear()+"년 "+(입대일.getMonth()+1)+"월 "+입대일.getDate()+"일");
+edittag("전역일", "전역일 : "+전역일.getFullYear()+"년 "+(전역일.getMonth()+1)+"월 "+전역일.getDate()+"일");
+edittag("복무일수", "복무일수 : "+(전역일-입대일)/86400000, "복무일수");
+edittag("지금까지", "지금까지 : "+parseInt((Date.now()-입대일)/86400000), "지금까지");
+edittag("남은것", "남은것 : "+(parseInt((전역일-Date.now())/86400000)+1), "남은것");
+edittag("워킹", "working day : "+((parseInt((전역일-Date.now())/86400000)+1)*5/7-10-휴가일));
+edittag("%", "% : "+(Date.now()-입대일)/(전역일-입대일)*100+"%", "%");
+}
+function edittag(id, text){
+var Edittag = document.getElementById(id);
+Edittag.textContent = text;
+}
+function createtag(tag, text, id, fragment){
+var maketag = document.createElement(tag);
+var tagtext = document.createTextNode(text);
+maketag.id = id;
+maketag.appendChild(tagtext);
+fragment.appendChild(maketag);
+}
+$(function() {
+$( "#Datepicker1" ).datepicker({
+changeMonth: true, 
+changeYear: true,
+nextText: '다음 달',
+prevText: '이전 달' 
+});
+});
+$(function() {
+$( "#Datepicker2" ).datepicker({
+changeMonth: true, 
+changeYear: true,
+nextText: '다음 달',
+prevText: '이전 달' 
+});
+});
+function changeTitle() {
+if(document.getElementsByTagName("h1")[0].style.color!="black")
+{
+document.getElementsByTagName("h1")[0].style.color="black"
+}
+else
+{
+document.getElementsByTagName("h1")[0].style.color="pink"
+}
+}
+window.onload = function () {
+var interval = setInterval(changeTitle, 3000);
+document.getElementById("Gobutton").onclick = function () {
+var 입대일 = document.getElementById("Datepicker1").value;
+var 전역일 = document.getElementById("Datepicker2").value;
+var 휴가일 = document.getElementById("leave").value;
+입대일 = new Date(입대일);
+전역일 = new Date(전역일);
+if(count == 0)
+{
+newtag(입대일, 전역일, 휴가일);
+console.log("newtag");
+}
+else
+{
+updatetag(입대일, 전역일, 휴가일);
+console.log("tagupdate");
+}
+count = 1;
+}
+}
+
+</script>
+</head>
+<body style="border-top:10px solid green; border-bottom:10px solid green; border-left:10px solid green; border-right:10px solid green; padding:10px">
+<div>
+<div align="center">
+<!--
+<img src="https://d26horl2n8pviu.cloudfront.net/…/1…/small/1stsig.png…" size="50%">
+-->
+<!--
+<img src="http://gdimg.gmarket.co.kr/705574580/still/600?ver=0" style="height: 320px; max-width: 100%; width: auto">
+-->
+<img src="http://gdimg.gmarket.co.kr/705574580/still/600?ver=0" style="height: 30%; max-width: 30%; width: auto">
+<h1 id="title" style="color:pink">카투사 복무 CALCULATOR</h1>
+<h4 style="color:red">working day는 대략적인 계산이며, 단순히 주말패스, 2주간의 클리어링, 휴가일수만 고려해서 계산한 값입니다.</h3>
+<br>
+<input readonly="true" type="text" size = "62.5em" style="max-width: 100%; height:auto" value="입대일" id="Datepicker1"> 
+<br>
+<input readonly="true" type="text" size = "62.5em" style="max-width: 100%; height:auto" value="전역일" id="Datepicker2"> 
+<br>
+<input type="text" size = "62.5em" style="max-width: 100%; height:auto" placeholder="휴가일수" id="leave">
+<br>
+<input id="Gobutton" type="button" value="Go" size = "25"/>
+</div>
+<div align="center" id="main">
+</div>
+</div>
+</body>
+</html>
