@@ -8,6 +8,40 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
  <script>
     var count = 0;
+
+function calcDate(입대일, 전역일) {
+    var date1 = new Date(Date.now())
+    var date2 = new Date(전역일)
+
+    var weekdaycount = 0;
+    
+
+
+while(true) {  
+
+
+    var temp_date = date1;
+    if(temp_date.getTime() > date2.getTime()) {
+        console.log("count : " + count);
+        break;
+    } else {
+        var tmp = temp_date.getDay();
+        if(tmp == 0 || tmp == 6) {
+            // 주말
+            console.log("주말");
+        } else {
+            // 평일
+            console.log("평일");
+            weekdaycount++;         
+        }
+        temp_date.setDate(date1.getDate() + 1); 
+    }
+}
+
+return weekdaycount-1
+
+
+}
     function newtag(입대일, 전역일, 휴가일){
  var fragment = document.createDocumentFragment();
      createtag("h2", "입대일 : "+입대일.getFullYear()+"년 "+(입대일.getMonth()+1)+"월 "+입대일.getDate()+"일", "입대일", fragment);
@@ -15,7 +49,9 @@
         createtag("h2", "복무일수 : "+(전역일-입대일)/86400000, "복무일수", fragment);
         createtag("h2", "지금까지 : "+parseInt((Date.now()-입대일)/86400000), "지금까지", fragment);
         createtag("h2", "남은것 : "+(parseInt((전역일-Date.now())/86400000)+1), "남은것", fragment);
- createtag("h2", "working day : "+((parseInt((전역일-Date.now())/86400000)+1)*5/7-10-휴가일), "워킹", fragment);
+		var weekday = calcDate(입대일, 전역일)
+		 createtag("h2", "working day : "+(weekday-10-휴가일), "워킹", fragment);
+// createtag("h2", "working day : "+((parseInt((전역일-Date.now())/86400000)+1)*5/7-10-휴가일), "워킹", fragment);
         createtag("h2", "% : "+(Date.now()-입대일)/(전역일-입대일)*100+"%", "%", fragment);
   document.getElementById("main").appendChild(fragment);
 //document.body.appendChild(fragment);
@@ -28,7 +64,9 @@
         edittag("복무일수", "복무일수 : "+(전역일-입대일)/86400000, "복무일수");
         edittag("지금까지", "지금까지 : "+parseInt((Date.now()-입대일)/86400000), "지금까지");
         edittag("남은것", "남은것 : "+(parseInt((전역일-Date.now())/86400000)+1), "남은것");
- edittag("워킹", "working day : "+((parseInt((전역일-Date.now())/86400000)+1)*5/7-10-휴가일));
+		var weekday = calcDate(입대일, 전역일)
+		 edittag("워킹", "working day : "+(weekday-10-휴가일));
+		//edittag("워킹", "working day : "+((parseInt((전역일-Date.now())/86400000)+1)*5/7-10-휴가일));
         edittag("%", "% : "+(Date.now()-입대일)/(전역일-입대일)*100+"%", "%");
         }
     
