@@ -3,112 +3,123 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://ajax.googleapis.com/¡¦/l¡¦/jquery/1.12.4/jquery.min.js"></script> 
-<link rel="stylesheet" href="https://ajax.googleapis.com/¡¦/them¡¦/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/¡¦/jquer¡¦/1.12.1/jquery-ui.min.js"></script> 
-<script>
-var count = 0;
-function newtag(ÀÔ´ëÀÏ, Àü¿ªÀÏ, ÈŞ°¡ÀÏ){
-var fragment = document.createDocumentFragment();
-createtag("h2", "ÀÔ´ëÀÏ : "+ÀÔ´ëÀÏ.getFullYear()+"³â "+(ÀÔ´ëÀÏ.getMonth()+1)+"¿ù "+ÀÔ´ëÀÏ.getDate()+"ÀÏ", "ÀÔ´ëÀÏ", fragment);
-createtag("h2", "Àü¿ªÀÏ : "+Àü¿ªÀÏ.getFullYear()+"³â "+(Àü¿ªÀÏ.getMonth()+1)+"¿ù "+Àü¿ªÀÏ.getDate()+"ÀÏ", "Àü¿ªÀÏ", fragment);
-createtag("h2", "º¹¹«ÀÏ¼ö : "+(Àü¿ªÀÏ-ÀÔ´ëÀÏ)/86400000, "º¹¹«ÀÏ¼ö", fragment);
-createtag("h2", "Áö±İ±îÁö : "+parseInt((Date.now()-ÀÔ´ëÀÏ)/86400000), "Áö±İ±îÁö", fragment);
-createtag("h2", "³²Àº°Í : "+(parseInt((Àü¿ªÀÏ-Date.now())/86400000)+1), "³²Àº°Í", fragment);
-createtag("h2", "working day : "+((parseInt((Àü¿ªÀÏ-Date.now())/86400000)+1)*5/7-10-ÈŞ°¡ÀÏ), "¿öÅ·", fragment);
-createtag("h2", "% : "+(Date.now()-ÀÔ´ëÀÏ)/(Àü¿ªÀÏ-ÀÔ´ëÀÏ)*100+"%", "%", fragment);
-document.getElementById("main").appendChild(fragment);
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
+ <script>
+    var count = 0;
+    function newtag(ì…ëŒ€ì¼, ì „ì—­ì¼, íœ´ê°€ì¼){
+ var fragment = document.createDocumentFragment();
+     createtag("h2", "ì…ëŒ€ì¼ : "+ì…ëŒ€ì¼.getFullYear()+"ë…„ "+(ì…ëŒ€ì¼.getMonth()+1)+"ì›” "+ì…ëŒ€ì¼.getDate()+"ì¼", "ì…ëŒ€ì¼", fragment);
+ createtag("h2", "ì „ì—­ì¼ : "+ì „ì—­ì¼.getFullYear()+"ë…„ "+(ì „ì—­ì¼.getMonth()+1)+"ì›” "+ì „ì—­ì¼.getDate()+"ì¼", "ì „ì—­ì¼", fragment);
+        createtag("h2", "ë³µë¬´ì¼ìˆ˜ : "+(ì „ì—­ì¼-ì…ëŒ€ì¼)/86400000, "ë³µë¬´ì¼ìˆ˜", fragment);
+        createtag("h2", "ì§€ê¸ˆê¹Œì§€ : "+parseInt((Date.now()-ì…ëŒ€ì¼)/86400000), "ì§€ê¸ˆê¹Œì§€", fragment);
+        createtag("h2", "ë‚¨ì€ê²ƒ : "+(parseInt((ì „ì—­ì¼-Date.now())/86400000)+1), "ë‚¨ì€ê²ƒ", fragment);
+ createtag("h2", "working day : "+((parseInt((ì „ì—­ì¼-Date.now())/86400000)+1)*5/7-10-íœ´ê°€ì¼), "ì›Œí‚¹", fragment);
+        createtag("h2", "% : "+(Date.now()-ì…ëŒ€ì¼)/(ì „ì—­ì¼-ì…ëŒ€ì¼)*100+"%", "%", fragment);
+  document.getElementById("main").appendChild(fragment);
 //document.body.appendChild(fragment);
-}
+        }
+      
+    
+    function updatetag(ì…ëŒ€ì¼, ì „ì—­ì¼, íœ´ê°€ì¼){
+        edittag("ì…ëŒ€ì¼", "ì…ëŒ€ì¼ : "+ì…ëŒ€ì¼.getFullYear()+"ë…„ "+(ì…ëŒ€ì¼.getMonth()+1)+"ì›” "+ì…ëŒ€ì¼.getDate()+"ì¼");
+        edittag("ì „ì—­ì¼", "ì „ì—­ì¼ : "+ì „ì—­ì¼.getFullYear()+"ë…„ "+(ì „ì—­ì¼.getMonth()+1)+"ì›” "+ì „ì—­ì¼.getDate()+"ì¼");
+        edittag("ë³µë¬´ì¼ìˆ˜", "ë³µë¬´ì¼ìˆ˜ : "+(ì „ì—­ì¼-ì…ëŒ€ì¼)/86400000, "ë³µë¬´ì¼ìˆ˜");
+        edittag("ì§€ê¸ˆê¹Œì§€", "ì§€ê¸ˆê¹Œì§€ : "+parseInt((Date.now()-ì…ëŒ€ì¼)/86400000), "ì§€ê¸ˆê¹Œì§€");
+        edittag("ë‚¨ì€ê²ƒ", "ë‚¨ì€ê²ƒ : "+(parseInt((ì „ì—­ì¼-Date.now())/86400000)+1), "ë‚¨ì€ê²ƒ");
+ edittag("ì›Œí‚¹", "working day : "+((parseInt((ì „ì—­ì¼-Date.now())/86400000)+1)*5/7-10-íœ´ê°€ì¼));
+        edittag("%", "% : "+(Date.now()-ì…ëŒ€ì¼)/(ì „ì—­ì¼-ì…ëŒ€ì¼)*100+"%", "%");
+        }
+    
+    function edittag(id, text){
+     var Edittag = document.getElementById(id);
+        Edittag.textContent = text;
+        }
+        
+    function createtag(tag, text, id, fragment){
+     var maketag = document.createElement(tag);
+        var tagtext = document.createTextNode(text);
+ maketag.id = id;
+        maketag.appendChild(tagtext);
+ fragment.appendChild(maketag);
+        }
+  
+ $(function() {
+   $( "#Datepicker1" ).datepicker({
+          changeMonth: true, 
+          changeYear: true,
+          nextText: 'ë‹¤ìŒ ë‹¬',
+          prevText: 'ì´ì „ ë‹¬' 
+   });
+ });
+ $(function() {
+   $( "#Datepicker2" ).datepicker({
+          changeMonth: true, 
+          changeYear: true,
+          nextText: 'ë‹¤ìŒ ë‹¬',
+          prevText: 'ì´ì „ ë‹¬' 
+   });
+ });
 
-function updatetag(ÀÔ´ëÀÏ, Àü¿ªÀÏ, ÈŞ°¡ÀÏ){
-edittag("ÀÔ´ëÀÏ", "ÀÔ´ëÀÏ : "+ÀÔ´ëÀÏ.getFullYear()+"³â "+(ÀÔ´ëÀÏ.getMonth()+1)+"¿ù "+ÀÔ´ëÀÏ.getDate()+"ÀÏ");
-edittag("Àü¿ªÀÏ", "Àü¿ªÀÏ : "+Àü¿ªÀÏ.getFullYear()+"³â "+(Àü¿ªÀÏ.getMonth()+1)+"¿ù "+Àü¿ªÀÏ.getDate()+"ÀÏ");
-edittag("º¹¹«ÀÏ¼ö", "º¹¹«ÀÏ¼ö : "+(Àü¿ªÀÏ-ÀÔ´ëÀÏ)/86400000, "º¹¹«ÀÏ¼ö");
-edittag("Áö±İ±îÁö", "Áö±İ±îÁö : "+parseInt((Date.now()-ÀÔ´ëÀÏ)/86400000), "Áö±İ±îÁö");
-edittag("³²Àº°Í", "³²Àº°Í : "+(parseInt((Àü¿ªÀÏ-Date.now())/86400000)+1), "³²Àº°Í");
-edittag("¿öÅ·", "working day : "+((parseInt((Àü¿ªÀÏ-Date.now())/86400000)+1)*5/7-10-ÈŞ°¡ÀÏ));
-edittag("%", "% : "+(Date.now()-ÀÔ´ëÀÏ)/(Àü¿ªÀÏ-ÀÔ´ëÀÏ)*100+"%", "%");
+    function changeTitle() {
+ if(document.getElementsByTagName("h1")[0].style.color!="black")
+ {
+ document.getElementsByTagName("h1")[0].style.color="black"
+ }
+ else
+ {
+ document.getElementsByTagName("h1")[0].style.color="pink"
+ }
 }
-function edittag(id, text){
-var Edittag = document.getElementById(id);
-Edittag.textContent = text;
-}
-function createtag(tag, text, id, fragment){
-var maketag = document.createElement(tag);
-var tagtext = document.createTextNode(text);
-maketag.id = id;
-maketag.appendChild(tagtext);
-fragment.appendChild(maketag);
-}
-$(function() {
-$( "#Datepicker1" ).datepicker({
-changeMonth: true, 
-changeYear: true,
-nextText: '´ÙÀ½ ´Ş',
-prevText: 'ÀÌÀü ´Ş' 
-});
-});
-$(function() {
-$( "#Datepicker2" ).datepicker({
-changeMonth: true, 
-changeYear: true,
-nextText: '´ÙÀ½ ´Ş',
-prevText: 'ÀÌÀü ´Ş' 
-});
-});
-function changeTitle() {
-if(document.getElementsByTagName("h1")[0].style.color!="black")
-{
-document.getElementsByTagName("h1")[0].style.color="black"
-}
-else
-{
-document.getElementsByTagName("h1")[0].style.color="pink"
-}
-}
-window.onload = function () {
-var interval = setInterval(changeTitle, 3000);
-document.getElementById("Gobutton").onclick = function () {
-var ÀÔ´ëÀÏ = document.getElementById("Datepicker1").value;
-var Àü¿ªÀÏ = document.getElementById("Datepicker2").value;
-var ÈŞ°¡ÀÏ = document.getElementById("leave").value;
-ÀÔ´ëÀÏ = new Date(ÀÔ´ëÀÏ);
-Àü¿ªÀÏ = new Date(Àü¿ªÀÏ);
-if(count == 0)
-{
-newtag(ÀÔ´ëÀÏ, Àü¿ªÀÏ, ÈŞ°¡ÀÏ);
-console.log("newtag");
-}
-else
-{
-updatetag(ÀÔ´ëÀÏ, Àü¿ªÀÏ, ÈŞ°¡ÀÏ);
-console.log("tagupdate");
-}
-count = 1;
-}
-}
+    window.onload = function () {
+ var interval = setInterval(changeTitle, 3000);
+ document.getElementById("Gobutton").onclick = function () {
+         var ì…ëŒ€ì¼ = document.getElementById("Datepicker1").value;
+             var ì „ì—­ì¼ = document.getElementById("Datepicker2").value;
+ var íœ´ê°€ì¼ = document.getElementById("leave").value;
+             ì…ëŒ€ì¼ = new Date(ì…ëŒ€ì¼);
+             ì „ì—­ì¼ = new Date(ì „ì—­ì¼);
+             if(count == 0)
+             {
+             newtag(ì…ëŒ€ì¼, ì „ì—­ì¼, íœ´ê°€ì¼);
+                 console.log("newtag");
+             }
+             else
+             {
+             updatetag(ì…ëŒ€ì¼, ì „ì—­ì¼, íœ´ê°€ì¼);
+                 console.log("tagupdate");
+             }
+                
+             count = 1;
+           
+        }
+    }
 
-</script>
+        
+ </script>
 </head>
 <body style="border-top:10px solid green; border-bottom:10px solid green; border-left:10px solid green; border-right:10px solid green; padding:10px">
 <div>
 <div align="center">
 <!--
-<img src="https://d26horl2n8pviu.cloudfront.net/¡¦/1¡¦/small/1stsig.png¡¦" size="50%">
+<img src="https://d26horl2n8pviu.cloudfront.net/patch_images/images/000/000/120/small/1stsig.png?1357076152" size="50%">
 -->
 <!--
 <img src="http://gdimg.gmarket.co.kr/705574580/still/600?ver=0" style="height: 320px; max-width: 100%; width: auto">
 -->
-<img src="http://gdimg.gmarket.co.kr/705574580/still/600?ver=0" style="height: 30%; max-width: 30%; width: auto">
-<h1 id="title" style="color:pink">Ä«Åõ»ç º¹¹« CALCULATOR</h1>
-<h4 style="color:red">working day´Â ´ë·«ÀûÀÎ °è»êÀÌ¸ç, ´Ü¼øÈ÷ ÁÖ¸»ÆĞ½º, 2ÁÖ°£ÀÇ Å¬¸®¾î¸µ, ÈŞ°¡ÀÏ¼ö¸¸ °í·ÁÇØ¼­ °è»êÇÑ °ªÀÔ´Ï´Ù.</h3>
+<!--
+<img src="http://gdimg.gmarket.co.kr/705574580/still/600?ver=0" style="height: 20%; max-width: 20%; width: 20%">
+-->
+<a href='http://i.imgur.com/GiD31WO' title=''><img src='http://i.imgur.com/GiD31WO.jpg' alt='' title='Hosted by imgur.com' /></a>
+<h1 id="title" style="color:pink">ì¹´íˆ¬ì‚¬ ë³µë¬´ CALCULATOR</h1>
+<h4 style="color:red">working dayëŠ” ëŒ€ëµì ì¸ ê³„ì‚°ì´ë©°, ë‹¨ìˆœíˆ ì£¼ë§íŒ¨ìŠ¤, 2ì£¼ê°„ì˜ í´ë¦¬ì–´ë§, íœ´ê°€ì¼ìˆ˜ë§Œ ê³ ë ¤í•´ì„œ ê³„ì‚°í•œ ê°’ì…ë‹ˆë‹¤.</h3>
 <br>
-<input readonly="true" type="text" size = "62.5em" style="max-width: 100%; height:auto" value="ÀÔ´ëÀÏ" id="Datepicker1"> 
+<input readonly="true" type="text" size = "62.5em" style="max-width: 100%; height:auto" value="ì…ëŒ€ì¼" id="Datepicker1"> 
 <br>
-<input readonly="true" type="text" size = "62.5em" style="max-width: 100%; height:auto" value="Àü¿ªÀÏ" id="Datepicker2"> 
+<input readonly="true" type="text" size = "62.5em" style="max-width: 100%; height:auto" value="ì „ì—­ì¼" id="Datepicker2"> 
 <br>
-<input type="text" size = "62.5em" style="max-width: 100%; height:auto" placeholder="ÈŞ°¡ÀÏ¼ö" id="leave">
+<input type="text" size = "62.5em" style="max-width: 100%; height:auto" placeholder="íœ´ê°€ì¼ìˆ˜" id="leave">
 <br>
 <input id="Gobutton" type="button" value="Go" size = "25"/>
 </div>
